@@ -1,0 +1,1087 @@
+<!doctype html>
+<!-- Version 2026-11-17 : premiere version, sur le modele nettoyee de The Future Machine, adaptee aux presents (simple et continuous, sans present perfect) -->
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Present Machine : les présents en anglais</title>
+<style>
+:root{
+  --bg1:#0b1030; --panel:#171a3d; --panel2:#12142f; --line:#2d3168;
+  --txt:#eef1ff; --muted:#9aa3d0;
+  --accent:#8b7cf6;
+  --good:#34d399; --bad:#fb7185;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; }
+body{
+  font-family:"Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  color:var(--txt);
+  background:
+    radial-gradient(1100px 600px at 85% -10%, #2a2f6e 0%, rgba(42,47,110,0) 60%),
+    radial-gradient(900px 500px at -10% 110%, #34306e 0%, rgba(52,48,110,0) 55%),
+    linear-gradient(160deg, var(--bg1), #14102e);
+  background-attachment:fixed;
+  min-height:100vh;
+}
+header{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; padding:18px 22px 6px; max-width:1020px; margin:0 auto; }
+.brand{ font-size:1.45rem; font-weight:800; letter-spacing:.4px; }
+.sub{ color:var(--muted); font-size:.92rem; margin-top:2px; }
+.spacer{ flex:1; }
+main{ max-width:1020px; margin:0 auto; padding:10px 18px 70px; }
+.back{ background:none; border:1px solid var(--line); color:var(--muted); padding:7px 14px; border-radius:999px; cursor:pointer; font:inherit; font-size:.9rem; }
+.back:hover{ color:var(--txt); border-color:var(--accent); }
+.btn{ font:inherit; border:none; border-radius:12px; padding:11px 20px; cursor:pointer; font-weight:600; }
+.btn:disabled{ opacity:.4; cursor:not-allowed; }
+.btn.primary{ background:linear-gradient(135deg,#8b7cf6,#6d5fd0); color:#fff; box-shadow:0 6px 18px rgba(139,124,246,.35); }
+.btn.primary:hover:not(:disabled){ filter:brightness(1.1); }
+.btn.ghost{ background:none; border:1px solid var(--line); color:var(--txt); }
+.linklike{ background:none; border:none; color:var(--muted); text-decoration:underline; cursor:pointer; font:inherit; font-size:.9rem; padding:0; }
+.linklike:hover{ color:var(--txt); }
+
+/* menu */
+.menu-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; margin-top:18px; }
+.game-card{ background:var(--panel); border:1px solid var(--line); border-radius:18px; padding:20px; cursor:pointer; transition:transform .15s, border-color .15s; }
+.game-card:hover{ transform:translateY(-3px); border-color:var(--accent); }
+.game-card .ico{ font-size:1.9rem; }
+.game-card h3{ margin:10px 0 6px; font-size:1.15rem; }
+.game-card p{ margin:0 0 10px; color:var(--muted); font-size:.9rem; line-height:1.4; }
+.best{ font-size:1.05rem; color:#ffd76a; letter-spacing:2px; }
+.tag{ display:inline-block; font-size:.72rem; padding:3px 10px; border-radius:999px; border:1px solid var(--line); color:var(--muted); }
+.total{ margin-top:24px; text-align:center; color:var(--muted); font-size:.95rem; }
+.total strong{ color:#ffd76a; letter-spacing:1px; }
+/* accueil */
+.wcard{ max-width:460px; margin:30px auto; background:var(--panel); border:1px solid var(--line); border-radius:20px; padding:30px; text-align:center; }
+.wcard h2{ margin:8px 0 6px; }
+.wcard label{ display:block; text-align:left; margin:16px 0 6px; color:var(--muted); font-size:.9rem; }
+.wcard input{ font:inherit; width:100%; padding:11px 14px; border-radius:11px; border:1px solid var(--line); background:var(--panel2); color:var(--txt); }
+.wcard input:focus{ outline:none; border-color:var(--accent); }
+.werr{ color:var(--bad); min-height:20px; font-size:.88rem; margin-top:10px; }
+.wcard .btn{ width:100%; margin-top:8px; }
+/* joueur et envoi du rapport */
+.player{ margin-top:18px; text-align:center; color:var(--muted); font-size:.92rem; }
+.sendbox{ margin-top:16px; text-align:center; }
+.sendbox h3{ margin:0 0 6px; }
+.sendbox p{ color:var(--muted); font-size:.9rem; margin:0 0 12px; }
+.report-area{ width:100%; font:inherit; font-size:.8rem; padding:10px; border-radius:10px; border:1px solid var(--line); background:var(--panel2); color:var(--txt); resize:none; margin-bottom:12px; }
+
+/* écrans de jeu */
+.screen h2{ margin:14px 0 4px; font-size:1.5rem; }
+.rules{ color:var(--muted); margin:4px 0 18px; font-size:.95rem; }
+.panel{ background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:18px; }
+.hidden{ display:none !important; }
+
+/* quiz */
+.quiz-top{ display:flex; justify-content:space-between; color:var(--muted); font-size:.9rem; margin-bottom:8px; }
+.timerbar{ height:10px; background:var(--panel2); border:1px solid var(--line); border-radius:999px; overflow:hidden; margin-bottom:18px; }
+.timerbar > div{ height:100%; width:100%; background:linear-gradient(90deg,#34d399,#5eead4); transition:width .1s linear; }
+.quiz-q{ font-size:1.25rem; line-height:1.5; margin-bottom:16px; min-height:56px; }
+.options{ display:grid; gap:10px; }
+.opt{ font:inherit; text-align:left; background:var(--panel2); border:1px solid var(--line); color:var(--txt); border-radius:12px; padding:13px 16px; cursor:pointer; font-size:1.05rem; }
+.opt:hover:not(:disabled){ border-color:var(--accent); }
+.opt.good{ border-color:var(--good); background:rgba(52,211,153,.12); }
+.opt.bad{ border-color:var(--bad); background:rgba(251,113,133,.12); }
+.why{ margin-top:16px; padding:13px 16px; border-left:4px solid var(--accent); background:rgba(139,124,246,.1); border-radius:8px; line-height:1.55; }
+
+/* tri */
+.pool{ display:flex; flex-wrap:wrap; gap:10px; min-height:60px; padding:12px; background:var(--panel); border:1px dashed var(--line); border-radius:14px; margin-bottom:16px; }
+.zones{ display:grid; grid-template-columns:repeat(auto-fit,minmax(185px,1fr)); gap:12px; }
+.zone{ min-height:150px; padding:12px; border-radius:14px; border:2px dashed var(--line); transition:border-color .15s, background .15s; }
+.zone.dragover{ border-color:var(--accent); background:rgba(139,124,246,.07); }
+.zone h4{ margin:2px 4px 10px; font-size:.92rem; line-height:1.35; }
+.zone h4 .zhint{ display:block; margin:3px 0 0; font-weight:400; font-size:.76rem; opacity:.72; }
+.scard{ font:inherit; display:block; width:100%; text-align:left; margin:0 0 10px; padding:11px 14px; border-radius:11px; border:1px solid var(--line); background:var(--panel2); color:var(--txt); cursor:grab; font-size:.95rem; line-height:1.4; }
+.pool .scard{ width:auto; display:inline-block; }
+.scard:hover{ border-color:var(--accent); }
+.scard.sel{ border-color:var(--accent); box-shadow:0 0 0 2px rgba(139,124,246,.4); }
+.scard.locked{ border-color:var(--good); background:rgba(52,211,153,.1); cursor:default; }
+.feedback{ margin-top:14px; min-height:24px; font-size:.95rem; line-height:1.5; }
+
+/* mémo (memory) */
+.mem-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+@media (max-width:560px){ .mem-grid{ grid-template-columns:repeat(2,1fr); } }
+.mcard{ font:inherit; color:var(--txt); min-height:92px; border-radius:12px; border:1px solid var(--line); background:linear-gradient(135deg,#232858,#1a1d45); cursor:pointer; padding:10px; position:relative; }
+.mcard .star{ position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:1.4rem; }
+.mcard .txt{ display:none; font-size:.8rem; line-height:1.3; }
+.mcard.open{ background:var(--panel2); border-color:var(--accent); }
+.mcard.open .star{ display:none; }
+.mcard.open .txt{ display:block; }
+.mcard.matched{ border-color:var(--good); background:rgba(52,211,153,.12); cursor:default; }
+
+/* remise en ordre */
+.answer-line{ display:flex; flex-wrap:wrap; gap:8px; align-items:center; min-height:58px; padding:12px; border:2px dashed var(--line); border-radius:12px; margin-bottom:14px; background:var(--panel2); }
+.answer-line.ok{ border-color:var(--good); }
+.bank{ display:flex; flex-wrap:wrap; gap:8px; padding:12px; background:var(--panel); border:1px solid var(--line); border-radius:12px; min-height:56px; }
+.chip{ font:inherit; background:#232858; border:1px solid var(--line); color:var(--txt); padding:7px 13px; border-radius:999px; cursor:pointer; font-size:.95rem; }
+.chip:hover{ border-color:var(--accent); }
+.chip.sel{ border-color:var(--accent); background:#2a2f66; box-shadow:0 0 0 2px rgba(139,124,246,.35); }
+.chip.good{ border-color:var(--good); background:rgba(52,211,153,.12); cursor:default; }
+.chip.bad{ border-color:var(--bad); background:rgba(251,113,133,.14); }
+.chip:disabled{ cursor:default; }
+.shake{ animation:shake .4s; }
+@keyframes shake{ 0%,100%{transform:translateX(0)} 25%{transform:translateX(-7px)} 75%{transform:translateX(7px)} }
+.hint{ margin-top:12px; color:#ffd76a; font-size:.9rem; }
+
+/* complétion */
+.fill-row{ display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; margin-bottom:16px; line-height:1.7; }
+.fill-row .num{ color:var(--muted); min-width:26px; }
+.fill-row input{ font:inherit; font-size:1rem; padding:7px 10px; border-radius:9px; border:1px solid var(--line); background:var(--panel2); color:var(--txt); min-width:180px; }
+.fill-row input:focus{ outline:none; border-color:var(--accent); }
+.fill-row input.good{ border-color:var(--good); background:rgba(52,211,153,.1); }
+.fill-row input.bad{ border-color:var(--bad); background:rgba(251,113,133,.12); }
+.clue{ color:var(--muted); font-size:.85rem; }
+
+/* fiche de règles */
+.memo-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+@media (max-width:700px){ .memo-grid{ grid-template-columns:1fr; } }
+.rule{ background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:18px; }
+.rule h3{ margin:0 0 8px; }
+.rule ul{ margin:0; padding-left:20px; line-height:1.8; }
+.rule .en{ color:#ffd76a; }
+table.markers{ width:100%; border-collapse:collapse; margin-top:6px; font-size:.95rem; }
+table.markers td, table.markers th{ border:1px solid var(--line); padding:8px 12px; text-align:left; }
+table.markers th{ color:var(--muted); font-weight:600; }
+
+/* écran de résultat */
+.overlay{ position:fixed; inset:0; background:rgba(8,9,26,.75); backdrop-filter:blur(4px); display:flex; align-items:center; justify-content:center; padding:20px; z-index:100; }
+.result{ background:var(--panel); border:1px solid var(--accent); border-radius:20px; padding:34px 38px; text-align:center; max-width:420px; width:100%; animation:pop .35s ease; }
+@keyframes pop{ from{ transform:scale(.85); opacity:0; } to{ transform:scale(1); opacity:1; } }
+.result .rico{ font-size:2.4rem; }
+.result h2{ margin:8px 0 4px; }
+.result .big{ font-size:1.7rem; font-weight:800; }
+.result .stars{ font-size:2rem; letter-spacing:6px; margin:8px 0; color:#ffd76a; }
+.result .msg{ color:var(--muted); line-height:1.5; margin:10px 0 20px; }
+.result .btn{ margin:4px; }
+.confetti{ position:fixed; top:-16px; z-index:200; border-radius:2px; animation:fall linear forwards; pointer-events:none; }
+@keyframes fall{ to{ transform:translateY(110vh) rotate(720deg); opacity:.85; } }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <div class="brand">🎁 The Present Machine</div>
+    <div class="sub">Present Simple vs Continuous · Niveau B1-B2 · 5 mini-jeux</div>
+  </div>
+  <div class="spacer"></div>
+  <button class="btn ghost" id="btnSound" title="Activer ou couper le son">🔊</button>
+</header>
+<main id="main"></main>
+<script>
+"use strict";
+
+/* ============================================================
+   ⭐ MODIFIEZ VOTRE EXERCICE ICI ⭐
+   Tout le contenu pédagogique se trouve dans les blocs
+   ci-dessous (QUIZ_DATA, SORT_ROLES + SORT_DATA, MEMORY_DATA,
+   SCRAMBLE_DATA, FILL_DATA, REPORT_CONFIG). Vous pouvez
+   modifier les phrases librement : le moteur s'adapte
+   automatiquement au nombre de phrases, de rôles et de paires.
+   Le champ "why" du quiz est l'explication affichée après
+   la réponse. Le reste du fichier est le moteur des jeux.
+   ============================================================ */
+
+/* --- Quiz éclair : question à 3 choix, "why" = explication
+   affichée après la réponse, "correct" = index de la bonne
+   option dans "options". --- */
+const QUIZ_DATA = [
+  { q:"Look! The manager ______ with a customer.", options:["is talking","talks","talk"], correct:0,
+    why:"Look! + action qui se déroule maintenant → <b>present continuous</b>." },
+  { q:"She ______ her e-mails every morning before opening the shop.", options:["checks","is checking","check"], correct:0,
+    why:"every morning = habitude, routine → <b>present simple</b>." },
+  { q:"Look! It ______ hard outside, take an umbrella!", options:["is raining","rains","rain"], correct:0,
+    why:"Look! + action qui se déroule maintenant → <b>present continuous</b>." },
+  { q:"The shop ______ at 9 a.m., from Monday to Saturday.", options:["opens","is opening","open"], correct:0,
+    why:"Horaire fixe, répétition → <b>present simple</b>." },
+  { q:"They always ______ their prices before the sales period.", options:["change","are changing","changes"], correct:0,
+    why:"always + habitude → <b>present simple</b>." },
+  { q:"Be quiet! The customers ______ to the presentation.", options:["are listening","listen","listens"], correct:0,
+    why:"Be quiet! + action en cours → <b>present continuous</b>." },
+  { q:"Customers ______ discounts. It is a general truth.", options:["love","are loving","loves"], correct:0,
+    why:"Vérité générale + verbe d'état → <b>present simple</b>." },
+  { q:"This month, we ______ on our new marketing campaign.", options:["are working","work","works"], correct:0,
+    why:"This month = situation temporaire en cours → <b>present continuous</b>." },
+  { q:"Right now, she ______ the window display for the sales.", options:["is preparing","prepares","prepare"], correct:0,
+    why:"Right now = action en cours → <b>present continuous</b>." },
+  { q:"Water ______ at 100 degrees Celsius.", options:["boils","is boiling","boil"], correct:0,
+    why:"Vérité scientifique, toujours vraie → <b>present simple</b>." }
+];
+
+/* --- Le tri des cadeaux (une boîte par rôle) ---
+   Chaque boîte cadeau correspond à UN rôle précis du présent.
+   SORT_ROLES = la liste des boîtes (id = identifiant interne, ico, label = titre
+   affiché, hint = petit indice affiché sous le titre).
+   SORT_DATA  = les phrases à trier ; "role" = identifiant de la boîte visée.
+   Vous pouvez ajouter ou retirer des rôles et des phrases librement. */
+const SORT_ROLES = [
+  { id:"habit", ico:"🕒", label:"Habitude ou routine",     hint:"every day, usually, always" },
+  { id:"truth", ico:"🌍", label:"Vérité générale",         hint:"toujours vrai, sciences, goûts" },
+  { id:"now",   ico:"🎬", label:"Action en cours",          hint:"now, right now, Look!, Listen!" },
+  { id:"temp",  ico:"📅", label:"Situation temporaire",     hint:"this week, this month, aujourd'hui" }
+];
+const SORT_DATA = [
+  { text:"I check the stock every evening.", role:"habit" },
+  { text:"She usually takes the bus to work.", role:"habit" },
+  { text:"Customers love good deals.", role:"truth" },
+  { text:"Water freezes at 0 degrees Celsius.", role:"truth" },
+  { text:"Look! The interns are cleaning the shop window.", role:"now" },
+  { text:"Listen! Someone is knocking at the door.", role:"now" },
+  { text:"We are working on the new catalogue this month.", role:"temp" },
+  { text:"He is staying with his parents this week.", role:"temp" }
+];
+
+/* --- Mémo du présent : paires [début de phrase, fin de phrase] --- */
+const MEMORY_DATA = [
+  ["Look at this photo! The team", "is wearing the new uniform."],
+  ["She checks her e-mails", "every morning at 8."],
+  ["This week, we are preparing", "the winter sales."],
+  ["Listen! The customers", "are complaining about the price."],
+  ["Look! The intern is arranging", "the new products on the shelf."],
+  ["The shop opens", "at 9 a.m. on weekdays."],
+  ["This month, we are launching", "a new loyalty card."],
+  ["She always greets", "the customers with a smile."]
+];
+
+/* --- Mélange des mots : phrases à reconstruire mot par mot --- */
+const SCRAMBLE_DATA = [
+  "The manager is talking to a customer right now.",
+  "I check my e-mails every morning.",
+  "She is studying marketing this year.",
+  "Sales are improving this quarter.",
+  "He never misses a single delivery."
+];
+
+/* --- La machine à écrire (deux choix par phrase) ---
+   Pour chaque phrase, l'élève clique sur la bonne des deux propositions.
+   "start" et "end" entourent le trou ; "options" = les deux propositions
+   (affichées dans un ordre aléatoire) ; "correct" = index (0 ou 1)
+   de la bonne réponse dans "options". */
+const FILL_DATA = [
+  { start:"Don't disturb her, she ", end:" an important call.", options:["is making", "makes"], correct:0 },
+  { start:"The bakery ", end:" at 6:30 a.m., even on Sundays.", options:["is opening", "opens"], correct:1 },
+  { start:"I ", end:" my homework right now, so I cannot help you.", options:["am doing", "do"], correct:0 },
+  { start:"The train to Lille ", end:" at 7:42 every morning.", options:["is leaving", "leaves"], correct:1 },
+  { start:"Look! The sales assistant ", end:" with a huge queue at the till.", options:["deals", "is dealing"], correct:1 },
+  { start:"They ", end:" their prices every January, before the sales.", options:["are changing", "change"], correct:1 },
+  { start:"This week, the team ", end:" on the Christmas window display.", options:["works", "is working"], correct:1 },
+  { start:"Hurry up! The shop ", end:"!", options:["closes", "is closing"], correct:1 }
+];
+
+/* ⭐ MODIFIEZ VOTRE EXERCICE ICI (rapport par e-mail) ⭐
+   Service : FormSubmit (gratuit, sans inscription, sans limite d'envois).
+   1. Indiquez ci-dessous votre adresse e-mail : c'est elle qui recevra les rapports.
+   2. Au tout premier envoi, FormSubmit vous enverra un e-mail d'activation :
+      cliquez sur le lien qu'il contient pour activer la réception des rapports. */
+const REPORT_CONFIG = {
+  teacherEmail: "v-ctrl+prof@murena.io"
+};
+
+/* ================== Moteur des jeux (ne rien modifier en principe) ================== */
+
+const main = document.getElementById("main");
+
+function loadJSON(key, fallback){
+  try{ const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }
+  catch(e){ return fallback; }
+}
+function saveJSON(key, val){
+  try{ localStorage.setItem(key, JSON.stringify(val)); }catch(e){}
+}
+
+let best = loadJSON("presentMachineBest", {});
+let soundOn = loadJSON("presentMachineSound", true);
+let student = loadJSON("presentMachineStudent", null);
+let sessionResults = {};
+let lastGame = null;
+let currentCleanup = null;
+
+function cleanup(){ if(currentCleanup){ currentCleanup(); currentCleanup = null; } }
+
+function shuffle(arr){
+  const r = arr.slice();
+  for(let i = r.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = r[i]; r[i] = r[j]; r[j] = t;
+  }
+  return r;
+}
+
+function norm(s){
+  return String(s).toLowerCase().replace(/\u2019/g, "'").replace(/\s+/g, " ").trim().replace(/[.!?]+$/, "");
+}
+
+/* ---------- Sons ---------- */
+let audioCtx = null;
+function tone(freq, dur, type, vol){
+  if(!soundOn) return;
+  try{
+    if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const o = audioCtx.createOscillator();
+    const g = audioCtx.createGain();
+    o.type = type || "sine";
+    o.frequency.value = freq;
+    g.gain.setValueAtTime(vol || 0.12, audioCtx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
+    o.connect(g); g.connect(audioCtx.destination);
+    o.start(); o.stop(audioCtx.currentTime + dur);
+  }catch(e){}
+}
+function sfxGood(){ tone(660, .1, "sine", .12); setTimeout(function(){ tone(990, .14, "sine", .1); }, 90); }
+function sfxBad(){ tone(180, .2, "square", .06); }
+function sfxWin(){ [523, 659, 784, 1047].forEach(function(f, i){ setTimeout(function(){ tone(f, .18, "sine", .12); }, i * 120); }); }
+
+const btnSound = document.getElementById("btnSound");
+function paintSound(){ btnSound.textContent = soundOn ? "🔊" : "🔇"; }
+btnSound.addEventListener("click", function(){
+  soundOn = !soundOn; saveJSON("presentMachineSound", soundOn); paintSound();
+});
+paintSound();
+
+/* ---------- Confettis ---------- */
+function confetti(){
+  const colors = ["#ffb347", "#5eead4", "#8b7cf6", "#34d399", "#fb7185", "#ffd76a"];
+  for(let i = 0; i < 90; i++){
+    const c = document.createElement("div");
+    c.className = "confetti";
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.background = colors[i % colors.length];
+    c.style.animationDuration = (2 + Math.random() * 2) + "s";
+    c.style.animationDelay = (Math.random() * 0.6) + "s";
+    c.style.width = (7 + Math.random() * 6) + "px";
+    c.style.height = (10 + Math.random() * 8) + "px";
+    document.body.appendChild(c);
+    setTimeout(function(){ c.remove(); }, 5200);
+  }
+}
+
+/* ---------- Étoiles et records ---------- */
+function starsHTML(n){ return "★".repeat(n) + "☆".repeat(3 - n); }
+function saveBest(id, stars){
+  best[id] = Math.max(best[id] || 0, stars);
+  saveJSON("presentMachineBest", best);
+}
+
+/* ---------- Écran de résultat ---------- */
+function showResult(cfg){
+  if(cfg.stars > 0) saveBest(cfg.id, cfg.stars);
+  sessionResults[cfg.id] = { big: cfg.big, stars: cfg.stars };
+  const ov = document.createElement("div");
+  ov.className = "overlay";
+  ov.innerHTML = '<div class="result">'
+    + '<div class="rico">' + cfg.ico + '</div>'
+    + '<h2>' + cfg.title + '</h2>'
+    + '<div class="big">' + cfg.big + '</div>'
+    + '<div class="stars">' + starsHTML(cfg.stars) + '</div>'
+    + '<div class="msg">' + cfg.msg + '</div>'
+    + '<button class="btn primary" id="ov-replay">Rejouer</button>'
+    + '<button class="btn ghost" id="ov-menu">Retour au menu</button>'
+    + '</div>';
+  document.body.appendChild(ov);
+  if(cfg.stars >= 2){ confetti(); sfxWin(); }
+  else if(cfg.stars === 1){ sfxGood(); }
+  else{ sfxBad(); }
+  ov.querySelector("#ov-replay").addEventListener("click", function(){ ov.remove(); lastGame(); });
+  ov.querySelector("#ov-menu").addEventListener("click", function(){ ov.remove(); renderMenu(); });
+}
+
+/* ---------- Menu ---------- */
+const GAMES = [
+  { id:"sort", ico:"🎁", title:"Le tri des cadeaux", desc:"Un cadeau par rôle : range chaque phrase dans la bonne (habitude, vérité générale, action en cours, situation temporaire).", fn:renderSort },
+  { id:"scramble", ico:"🔀", title:"Mélange des mots", desc:"Remets les mots dans le bon ordre pour reconstruire " + SCRAMBLE_DATA.length + " phrases.", fn:renderScramble },
+  { id:"fill", ico:"✍️", title:"La machine à écrire", desc:"Pour chacune des " + FILL_DATA.length + " phrases, choisis la bonne forme du présent entre deux propositions.", fn:renderFill },
+  { id:"quiz", ico:"⚡", title:"Quiz éclair", desc:QUIZ_DATA.length + " questions, 20 secondes chacune. Choisis la bonne forme du présent.", fn:renderQuiz },
+  { id:"memory", ico:"🧠", title:"Mémo du présent", desc:"Retrouve les " + MEMORY_DATA.length + " paires de phrases le plus vite possible.", fn:renderMemory }
+];
+
+function renderMenu(){
+  cleanup();
+  lastGame = renderMenu;
+  const cards = GAMES.map(function(g){
+    return '<div class="game-card" data-game="' + g.id + '">'
+      + '<div class="ico">' + g.ico + '</div>'
+      + '<h3>' + g.title + '</h3>'
+      + '<p>' + g.desc + '</p>'
+      + '<div><span class="best">' + (best[g.id] ? starsHTML(best[g.id]) : "☆☆☆") + '</span> <span class="tag">record</span></div>'
+      + '</div>';
+  }).join("");
+  const memoCard = '<div class="game-card" data-game="memo">'
+    + '<div class="ico">📘</div><h3>Mémo des règles</h3>'
+    + '<p>La fiche de révision avant de jouer : quand utiliser le present simple et le present continuous.</p>'
+    + '<div><span class="tag">fiche</span></div>'
+    + '</div>';
+  const total = GAMES.reduce(function(s, g){ return s + (best[g.id] || 0); }, 0);
+  const played = GAMES.filter(function(g){ return sessionResults[g.id]; }).length;
+  const playedAll = played === GAMES.length;
+  const sendHint = playedAll
+    ? "Toutes les épreuves ont été jouées : envoi possible."
+    : "Le bouton s'active après au moins un essai dans chaque épreuve (" + played + "/" + GAMES.length + " jouées).";
+  main.innerHTML = '<section class="screen">'
+    + '<h2>Choisis ton mini-jeu</h2>'
+    + '<p class="rules">Objectif : maîtriser les deux <b>présents</b> : <b>present simple</b> et <b>present continuous</b>. Gagne des étoiles sur chaque jeu pour devenir Maître du Présent !</p>'
+    + '<div class="menu-grid">' + memoCard + cards + '</div>'
+    + '<p class="total">Étoiles gagnées : <strong>' + total + ' / ' + (GAMES.length * 3) + ' ★</strong> (records gardés dans ce navigateur) · '
+    + '<button class="linklike" id="reset-scores">réinitialiser</button></p>'
+    + '<p class="player">👤 Joueur : <b>' + (student && student.name ? student.name : "?") + '</b> · '
+    + '<button class="linklike" id="change-player">changer de joueur</button></p>'
+    + '<div class="sendbox panel">'
+    + '<h3>📤 Terminer ta session ?</h3>'
+    + '<p>Envoie tes résultats à ton professeur : il recevra un rapport avec tes scores et tes étoiles de chaque épreuve.</p>'
+    + '<button class="btn primary" id="send-report"' + (playedAll ? "" : " disabled") + '>Envoyer mon rapport</button>'
+    + '<p class="clue" id="send-hint">' + sendHint + '</p>'
+    + '</div>'
+    + '</section>';
+  main.querySelectorAll(".game-card").forEach(function(card){
+    card.addEventListener("click", function(){
+      const id = card.dataset.game;
+      if(id === "memo"){ renderMemo(); }
+      else{
+        const g = GAMES.find(function(x){ return x.id === id; });
+        lastGame = g.fn; g.fn();
+      }
+    });
+  });
+  main.querySelector("#reset-scores").addEventListener("click", function(){
+    best = {}; saveJSON("presentMachineBest", best); renderMenu();
+  });
+  main.querySelector("#change-player").addEventListener("click", function(){ renderWelcome(); });
+  main.querySelector("#send-report").addEventListener("click", sendReport);
+}
+
+/* ---------- Quiz éclair ---------- */
+function renderQuiz(){
+  cleanup();
+  lastGame = renderQuiz;
+  const items = shuffle(QUIZ_DATA);
+  const st = { i:0, score:0, timer:null, locked:false, opts:[] };
+  main.innerHTML = '<section class="screen">'
+    + '<button class="back" id="q-back">← Menu</button>'
+    + '<h2>⚡ Quiz éclair</h2>'
+    + '<p class="rules">' + items.length + ' questions · 20 secondes par question · choisis la bonne forme du présent.</p>'
+    + '<div class="quiz-top"><span id="q-count"></span><span id="q-score"></span></div>'
+    + '<div class="timerbar"><div id="q-bar"></div></div>'
+    + '<div class="quiz-q panel" id="q-text"></div>'
+    + '<div class="options" id="q-opts"></div>'
+    + '<div class="why hidden" id="q-why"></div>'
+    + '<div style="margin-top:16px"><button class="btn primary hidden" id="q-next">Question suivante →</button></div>'
+    + '</section>';
+  main.querySelector("#q-back").addEventListener("click", renderMenu);
+  currentCleanup = function(){ if(st.timer) clearInterval(st.timer); };
+
+  function paintTop(){
+    main.querySelector("#q-count").textContent = "Question " + (st.i + 1) + "/" + items.length;
+    main.querySelector("#q-score").textContent = "Score : " + st.score;
+  }
+  function startTimer(){
+    const bar = main.querySelector("#q-bar");
+    const t0 = Date.now();
+    bar.style.width = "100%";
+    st.timer = setInterval(function(){
+      const p = Math.max(0, 1 - (Date.now() - t0) / 20000);
+      bar.style.width = (p * 100) + "%";
+      if(p <= 0) answer(-1);
+    }, 100);
+  }
+  function showQuestion(){
+    st.locked = false;
+    paintTop();
+    const it = items[st.i];
+    st.opts = shuffle(it.options.map(function(t, idx){ return { t:t, ok: idx === it.correct }; }));
+    main.querySelector("#q-text").textContent = it.q;
+    const box = main.querySelector("#q-opts");
+    box.innerHTML = "";
+    st.opts.forEach(function(o, k){
+      const b = document.createElement("button");
+      b.className = "opt";
+      b.textContent = o.t;
+      b.addEventListener("click", function(){ answer(k); });
+      box.appendChild(b);
+    });
+    main.querySelector("#q-why").classList.add("hidden");
+    main.querySelector("#q-next").classList.add("hidden");
+    startTimer();
+  }
+  function answer(k){
+    if(st.locked) return;
+    st.locked = true;
+    clearInterval(st.timer);
+    const it = items[st.i];
+    const btns = Array.prototype.slice.call(main.querySelectorAll("#q-opts .opt"));
+    btns.forEach(function(b){ b.disabled = true; });
+    btns.forEach(function(b, j){ if(st.opts[j].ok) b.classList.add("good"); });
+    if(k >= 0){
+      if(st.opts[k].ok){ st.score++; sfxGood(); }
+      else{ btns[k].classList.add("bad"); sfxBad(); }
+    }else{
+      sfxBad();
+    }
+    paintTop();
+    const why = main.querySelector("#q-why");
+    why.innerHTML = (k === -1 ? "⏰ Temps écoulé ! " : "") + it.why;
+    why.classList.remove("hidden");
+    const nx = main.querySelector("#q-next");
+    nx.textContent = (st.i === items.length - 1) ? "Voir mon résultat 🎉" : "Question suivante →";
+    nx.classList.remove("hidden");
+  }
+  main.querySelector("#q-next").addEventListener("click", function(){
+    st.i++;
+    if(st.i < items.length){ showQuestion(); } else { finish(); }
+  });
+  function finish(){
+    const stars = st.score >= 9 ? 3 : st.score >= 7 ? 2 : st.score >= 5 ? 1 : 0;
+    const msg = stars === 3 ? "Excellent ! Tu es Maître du Présent 🏆"
+      : stars === 2 ? "Très bien ! Encore un petit effort pour le sans-faute."
+      : stars === 1 ? "Pas mal ! Relis le Mémo des règles puis retente ta chance."
+      : "Courage ! Commence par le Mémo des règles, ça va beaucoup aider.";
+    showResult({ id:"quiz", ico:"⚡", title:"Quiz éclair", big: st.score + "/" + items.length, stars:stars, msg:msg });
+  }
+  showQuestion();
+}
+
+/* ---------- Tri des cadeaux ---------- */
+function renderSort(){
+  cleanup();
+  lastGame = renderSort;
+  const items = shuffle(SORT_DATA).map(function(s, i){
+    return { id:"c" + i, text:s.text, role:s.role, placed:null, locked:false };
+  });
+  let selected = null, errors = 0;
+  main.innerHTML = '<section class="screen">'
+    + '<button class="back" id="s-back">← Menu</button>'
+    + '<h2>🎁 Le tri des cadeaux</h2>'
+    + '<p class="rules">Clique une phrase puis clique une boîte (ou fais-la glisser). Chaque boîte représente un rôle précis du présent : à toi de repérer ce que fait la personne ! Quand les ' + items.length + ' phrases sont placées, appuie sur Vérifier. En cas de doute, relis le Mémo des règles.</p>'
+    + '<div class="pool" id="so-pool"></div>'
+    + '<div class="zones">'
+    + SORT_ROLES.map(function(r){
+        return '<div class="zone" data-zone="' + r.id + '"><h4>' + r.ico + ' ' + r.label
+             + '<span class="zhint">' + r.hint + '</span></h4></div>';
+      }).join("")
+    + '</div>'
+    + '<div class="feedback" id="so-fb"></div>'
+    + '<button class="btn primary" id="so-check" disabled>Vérifier</button>'
+    + '</section>';
+  main.querySelector("#s-back").addEventListener("click", renderMenu);
+  const pool = main.querySelector("#so-pool");
+  const zones = Array.prototype.slice.call(main.querySelectorAll(".zone"));
+  const fb = main.querySelector("#so-fb");
+  const btnCheck = main.querySelector("#so-check");
+
+  function onCardClick(it, e){
+    if(e && e.stopPropagation) e.stopPropagation();
+    if(it.locked) return;
+    if(it.placed){
+      it.placed = null;
+      if(selected === it.id) selected = null;
+    }else{
+      selected = (selected === it.id) ? null : it.id;
+    }
+    paint();
+  }
+  function placeIn(id, zone){
+    const it = items.find(function(x){ return x.id === id; });
+    if(!it || it.locked) return;
+    it.placed = zone;
+    if(selected === id) selected = null;
+    paint();
+  }
+  function paint(){
+    pool.innerHTML = "";
+    zones.forEach(function(z){
+      z.querySelectorAll(".scard").forEach(function(c){ c.remove(); });
+    });
+    items.forEach(function(it){
+      const b = document.createElement("button");
+      b.className = "scard" + (it.locked ? " locked" : "") + (selected === it.id ? " sel" : "");
+      b.textContent = it.text;
+      b.draggable = !it.locked;
+      b.addEventListener("click", function(e){ onCardClick(it, e); });
+      b.addEventListener("dragstart", function(e){
+        e.dataTransfer.setData("text/plain", it.id);
+        e.dataTransfer.effectAllowed = "move";
+      });
+      const z = zones.find(function(zz){ return zz.dataset.zone === it.placed; });
+      if(z){ z.appendChild(b); }else{ pool.appendChild(b); }
+    });
+    const placedCount = items.filter(function(i){ return i.placed; }).length;
+    btnCheck.disabled = placedCount < items.length;
+    const lockedCount = items.filter(function(i){ return i.locked; }).length;
+    fb.textContent = placedCount + "/" + items.length + " phrases placées · " + lockedCount + "/" + items.length + " validées";
+  }
+  zones.forEach(function(z){
+    z.addEventListener("click", function(){ if(selected) placeIn(selected, z.dataset.zone); });
+    z.addEventListener("dragover", function(e){ e.preventDefault(); z.classList.add("dragover"); });
+    z.addEventListener("dragleave", function(){ z.classList.remove("dragover"); });
+    z.addEventListener("drop", function(e){
+      e.preventDefault(); z.classList.remove("dragover");
+      const id = e.dataTransfer.getData("text/plain");
+      placeIn(id, z.dataset.zone);
+    });
+  });
+  btnCheck.addEventListener("click", function(){
+    let wrong = 0;
+    items.forEach(function(it){
+      if(it.placed && !it.locked){
+        if(it.placed === it.role){ it.locked = true; }
+        else{ it.placed = null; wrong++; errors++; }
+      }
+    });
+    paint();
+    if(items.every(function(i){ return i.locked; })){
+      finish();
+    }else{
+      sfxBad();
+      if(wrong > 0){
+        fb.textContent = "❌ " + wrong + (wrong > 1 ? " phrases sont mal placées" : " phrase est mal placée")
+          + " : elle" + (wrong > 1 ? "s sont retournée" : " est retournée") + " dans la réserve. Replace-la correctement !";
+      }
+    }
+  });
+  function finish(){
+    const stars = errors <= 2 ? 3 : errors <= 5 ? 2 : 1;
+    const msg = errors === 0 ? "Sans faute ! Tu maîtrises tous les rôles du présent : habitude, vérité, action en cours, situation temporaire."
+      : errors <= 2 ? "Bien joué ! Seulement " + errors + " erreur" + (errors > 1 ? "s" : "") + ". Relis le mémo pour le rôle qui t'a échappé."
+      : errors <= 5 ? "Terminé, avec " + errors + " erreurs : les rôles se ressemblent, le mémo t'aidera à les distinguer."
+      : "Terminé, mais avec " + errors + " erreurs, un détour par le Mémo des règles s'impose.";
+    showResult({ id:"sort", ico:"🎁", title:"Le tri des cadeaux", big: items.length + "/" + items.length + " placées", stars:stars, msg:msg });
+  }
+  paint();
+}
+
+/* ---------- Mémo du présent ---------- */
+function renderMemory(){
+  cleanup();
+  lastGame = renderMemory;
+  const deck = shuffle(MEMORY_DATA.flatMap(function(p, i){
+    return [{ pair:i, text:p[0] }, { pair:i, text:p[1] }];
+  }));
+  const totalPairs = MEMORY_DATA.length;
+  const open = [];
+  const matched = new Set();
+  let moves = 0, busy = false;
+  main.innerHTML = '<section class="screen">'
+    + '<button class="back" id="m-back">← Menu</button>'
+    + '<h2>🧠 Mémo du présent</h2>'
+    + '<p class="rules">Retrouve les ' + totalPairs + ' paires : chaque début de phrase va avec sa fin. Moins de coups, plus d\u2019étoiles !</p>'
+    + '<div class="quiz-top"><span id="m-moves">Coups : 0</span><span id="m-pairs">Paires : 0/' + totalPairs + '</span></div>'
+    + '<div class="mem-grid" id="m-grid"></div>'
+    + '</section>';
+  main.querySelector("#m-back").addEventListener("click", renderMenu);
+  const grid = main.querySelector("#m-grid");
+  deck.forEach(function(c, idx){
+    const b = document.createElement("button");
+    b.className = "mcard";
+    b.innerHTML = '<span class="star">🌟</span><span class="txt"></span>';
+    b.querySelector(".txt").textContent = c.text;
+    b.addEventListener("click", function(){ flip(idx, b); });
+    grid.appendChild(b);
+  });
+  function flip(idx, b){
+    if(busy || matched.has(idx) || open.includes(idx)) return;
+    open.push(idx);
+    b.classList.add("open");
+    tone(520, .06, "sine", .08);
+    if(open.length === 2){
+      moves++;
+      main.querySelector("#m-moves").textContent = "Coups : " + moves;
+      const a = deck[open[0]], c = deck[open[1]];
+      if(a.pair === c.pair){
+        open.forEach(function(i){
+          matched.add(i);
+          grid.children[i].classList.add("matched");
+        });
+        open.length = 0;
+        sfxGood();
+        main.querySelector("#m-pairs").textContent = "Paires : " + (matched.size / 2) + "/" + totalPairs;
+        if(matched.size === deck.length) finish();
+      }else{
+        busy = true;
+        sfxBad();
+        setTimeout(function(){
+          open.forEach(function(i){ grid.children[i].classList.remove("open"); });
+          open.length = 0;
+          busy = false;
+        }, 900);
+      }
+    }
+  }
+  function finish(){
+    const stars = moves <= 14 ? 3 : moves <= 18 ? 2 : 1;
+    const msg = moves <= 14 ? "Mémoire de maître !"
+      : moves <= 18 ? "Solide ! Tu peux encore gagner une étoile."
+      : "Terminé ! Retente pour améliorer ton record.";
+    showResult({ id:"memory", ico:"🧠", title:"Mémo du présent", big: moves + " coups", stars:stars, msg:msg });
+  }
+}
+
+/* ---------- Mélange des mots ---------- */
+function renderScramble(){
+  cleanup();
+  lastGame = renderScramble;
+  const sentences = SCRAMBLE_DATA.slice();
+  let sIdx = 0, totalMistakes = 0, attemptMistakes = 0;
+  let answer = [], bank = [];
+  main.innerHTML = '<section class="screen">'
+    + '<button class="back" id="sc-back">← Menu</button>'
+    + '<h2>🔀 Mélange des mots</h2>'
+    + '<p class="rules">Clique les mots dans le bon ordre pour reconstruire la phrase. Clique un mot déjà placé pour le retirer.</p>'
+    + '<div class="quiz-top"><span id="sc-count"></span><span id="sc-score">Erreurs : 0</span></div>'
+    + '<div class="answer-line" id="sc-answer"></div>'
+    + '<div class="bank" id="sc-bank"></div>'
+    + '<div class="hint hidden" id="sc-hint"></div>'
+    + '<div class="feedback" id="sc-fb"></div>'
+    + '<button class="btn primary" id="sc-check">Vérifier</button>'
+    + '</section>';
+  main.querySelector("#sc-back").addEventListener("click", renderMenu);
+  const line = main.querySelector("#sc-answer");
+  const bankEl = main.querySelector("#sc-bank");
+  const hint = main.querySelector("#sc-hint");
+  const fb = main.querySelector("#sc-fb");
+  const btnCheck = main.querySelector("#sc-check");
+
+  function loadSentence(){
+    const s = sentences[sIdx];
+    const words = s.split(" ");
+    do { bank = shuffle(words); } while(bank.join(" ") === s && words.length > 1);
+    answer = [];
+    attemptMistakes = 0;
+    hint.classList.add("hidden");
+    hint.textContent = "";
+    fb.textContent = "";
+    main.querySelector("#sc-count").textContent = "Phrase " + (sIdx + 1) + "/" + sentences.length;
+    paint();
+  }
+  function paint(){
+    line.innerHTML = "";
+    bankEl.innerHTML = "";
+    answer.forEach(function(w, i){
+      const b = document.createElement("button");
+      b.className = "chip";
+      b.textContent = w;
+      b.addEventListener("click", function(){ answer.splice(i, 1); bank.push(w); paint(); });
+      line.appendChild(b);
+    });
+    bank.forEach(function(w, i){
+      const b = document.createElement("button");
+      b.className = "chip";
+      b.textContent = w;
+      b.addEventListener("click", function(){
+        bank.splice(i, 1); answer.push(w);
+        tone(500, .05, "sine", .07);
+        paint();
+      });
+      bankEl.appendChild(b);
+    });
+  }
+  btnCheck.addEventListener("click", function(){
+    const s = sentences[sIdx];
+    if(answer.length === 0){
+      fb.textContent = "Place au moins un mot dans la ligne du haut !";
+      return;
+    }
+    if(norm(answer.join(" ")) === norm(s)){
+      line.classList.add("ok");
+      sfxGood();
+      fb.textContent = "✅ Parfait !";
+      btnCheck.disabled = true;
+      setTimeout(function(){
+        line.classList.remove("ok");
+        btnCheck.disabled = false;
+        sIdx++;
+        if(sIdx < sentences.length){ loadSentence(); } else { finish(); }
+      }, 700);
+    }else{
+      attemptMistakes++; totalMistakes++;
+      sfxBad();
+      line.classList.add("shake");
+      setTimeout(function(){ line.classList.remove("shake"); }, 450);
+      main.querySelector("#sc-score").textContent = "Erreurs : " + totalMistakes;
+      fb.textContent = "❌ Ce n'est pas le bon ordre. Réessaie !";
+      if(attemptMistakes >= 2 && hint.classList.contains("hidden")){
+        hint.textContent = "💡 Indice : la phrase commence par « " + s.split(" ")[0] + " »";
+        hint.classList.remove("hidden");
+      }
+    }
+  });
+  function finish(){
+    const stars = totalMistakes <= 1 ? 3 : totalMistakes <= 4 ? 2 : 1;
+    const msg = totalMistakes <= 1 ? "Quasi parfait ! Les phrases du futur n'ont plus de secret pour toi."
+      : totalMistakes <= 4 ? "Bien joué ! Encore un peu d'entraînement pour le sans-faute."
+      : "Terminé ! Rejoue pour améliorer ton score.";
+    showResult({ id:"scramble", ico:"🔀", title:"Mélange des mots",
+      big: totalMistakes + " erreur" + (totalMistakes > 1 ? "s" : ""), stars:stars, msg:msg });
+  }
+  loadSentence();
+}
+
+/* ---------- Machine à écrire ---------- */
+function renderFill(){
+  cleanup();
+  lastGame = renderFill;
+  let checks = 0, firstScore = 0;
+  const items = FILL_DATA.map(function(it){
+    return { start:it.start, end:it.end, opts:shuffle(it.options.slice()),
+             solution:it.options[it.correct], picked:null, locked:false, chips:[] };
+  });
+  const half = Math.ceil(items.length / 2);
+  main.innerHTML = '<section class="screen">'
+    + '<button class="back" id="f-back">← Menu</button>'
+    + '<h2>✍️ La machine à écrire</h2>'
+    + '<p class="rules">Pour chaque phrase, clique sur la bonne forme du présent. Le bouton Vérifier s\u2019active à partir de ' + half + ' phrases répondues ; les bonnes réponses se valident, tu peux changer ton choix sur les autres et re-vérifier.</p>'
+    + '<div id="f-rows"></div>'
+    + '<div class="feedback" id="f-fb"></div>'
+    + '<button class="btn primary" id="f-check" disabled>Vérifier</button>'
+    + '</section>';
+  main.querySelector("#f-back").addEventListener("click", renderMenu);
+  const rows = main.querySelector("#f-rows");
+  const btnCheck = main.querySelector("#f-check");
+  const fb = main.querySelector("#f-fb");
+  items.forEach(function(it, i){
+    const row = document.createElement("div");
+    row.className = "fill-row";
+    const num = document.createElement("span");
+    num.className = "num";
+    num.textContent = (i + 1) + ".";
+    const p = document.createElement("span");
+    p.appendChild(document.createTextNode(it.start));
+    it.opts.forEach(function(opt){
+      const c = document.createElement("button");
+      c.type = "button";
+      c.className = "chip";
+      c.textContent = opt;
+      c.addEventListener("click", function(){
+        if(it.locked) return;
+        it.picked = opt;
+        it.chips.forEach(function(x){ x.classList.remove("sel", "bad"); });
+        c.classList.add("sel");
+        refresh();
+      });
+      it.chips.push(c);
+      p.appendChild(c);
+    });
+    p.appendChild(document.createTextNode(it.end));
+    row.appendChild(num); row.appendChild(p);
+    rows.appendChild(row);
+  });
+  function answered(){ return items.filter(function(i){ return i.picked; }).length; }
+  function refresh(){ btnCheck.disabled = answered() < half; }
+  btnCheck.addEventListener("click", function(){
+    checks++;
+    let correct = 0;
+    items.forEach(function(it){
+      if(it.locked){ correct++; return; }
+      if(it.picked === it.solution){
+        it.locked = true;
+        it.chips.forEach(function(c){
+          c.classList.remove("sel");
+          c.disabled = true;
+          if(c.textContent === it.solution) c.classList.add("good");
+        });
+        correct++;
+      }else{
+        const c = it.chips.find(function(x){ return x.textContent === it.picked; });
+        if(c){ c.classList.add("bad"); setTimeout(function(){ c.classList.remove("bad"); }, 700); }
+      }
+    });
+    if(checks === 1) firstScore = correct;
+    if(correct === items.length){
+      const stars = firstScore === items.length ? 3 : firstScore >= 6 ? 2 : firstScore >= 4 ? 1 : 0;
+      const msg = firstScore === items.length ? "Sans faute dès le premier essai : impressionnant !"
+        : firstScore >= 6 ? "Très bien ! Tu peux viser le sans-faute au premier essai."
+        : firstScore >= 4 ? "Tu as complété toutes les phrases. Rejoue pour tout réussir d'un coup."
+        : "Terminé, mais quelques hésitations : un détour par le Mémo des règles ?";
+      showResult({ id:"fill", ico:"✍️", title:"La machine à écrire",
+        big: firstScore + "/" + items.length + " au 1er essai", stars:stars, msg:msg });
+    }else{
+      if(correct > 0) sfxGood(); else sfxBad();
+      fb.textContent = "✅ " + correct + "/" + items.length + " bonnes réponses. Change ton choix sur une proposition en rouge puis re-vérifie !";
+    }
+  });
+}
+
+/* ---------- Fiche de règles ---------- */
+function renderMemo(){
+  cleanup();
+  lastGame = renderMemo;
+  main.innerHTML = '<section class="screen">'
+    + '<button class="back" id="me-back">← Menu</button>'
+    + '<h2>📘 Mémo des règles</h2>'
+    + '<p class="rules">La fiche à relire avant de jouer.</p>'
+    + '<div class="memo-grid">'
+    + '<div class="rule"><h3>🟠 PRESENT SIMPLE</h3><ul>'
+    + '<li><b>Habitude, routine</b> : <span class="en">"I check my e-mails every morning."</span></li>'
+    + '<li><b>Vérité générale</b> : <span class="en">"Customers love good deals."</span></li>'
+    + '<li><b>Horaire fixe</b> : <span class="en">"The shop opens at 9 a.m."</span></li>'
+    + '</ul></div>'
+    + '<div class="rule"><h3>🔵 PRESENT CONTINUOUS</h3><ul>'
+    + '<li><b>Action en cours</b> pendant que tu parles : <span class="en">"Look! The manager is talking to a customer."</span></li>'
+    + '<li><b>Situation temporaire</b> : <span class="en">"We are working on a new project this month."</span></li>'
+    + '</ul></div>'
+    + '</div>'
+    + '<div class="panel" style="margin-top:16px">'
+    + '<h3>🔎 Les marqueurs à repérer</h3>'
+    + '<table class="markers">'
+    + '<tr><th>Marqueur dans la phrase</th><th>Forme attendue</th></tr>'
+    + '<tr><td>every day / usually / always / on Mondays</td><td>present simple</td></tr>'
+    + '<tr><td>now / right now / at the moment / Look! / Listen!</td><td>present continuous</td></tr>'
+    + '<tr><td>this week / this month (situation en cours)</td><td>present continuous</td></tr>'
+    + '<tr><td>vérité scientifique ou goût général</td><td>present simple</td></tr>'
+    + '</table>'
+    + '<p style="color:var(--muted); margin-bottom:0">💡 Astuce : l\'action se <b>répète</b> (routine, horaire, vérité) → present simple. Elle se passe <b>maintenant, pendant que tu parles</b> → present continuous.</p>'
+    + '</div>'
+    + '</section>';
+  main.querySelector("#me-back").addEventListener("click", renderMenu);
+}
+
+/* ---------- Page d'accueil : prénom de l'étudiant ---------- */
+function renderWelcome(){
+  cleanup();
+  lastGame = null;
+  main.innerHTML = '<section class="screen">'
+    + '<div class="wcard">'
+    + '<div class="rico">🎁</div>'
+    + '<h2>Bienvenue dans The Present Machine&#8239;!</h2>'
+    + '<p class="rules">Avant de jouer, indique ton prénom : ton professeur recevra un rapport avec tes résultats.</p>'
+    + '<label for="w-name">Ton prénom</label>'
+    + '<input id="w-name" type="text" maxlength="30" autocomplete="off" placeholder="ex. Camille">'
+    + '<label for="w-class">Ta classe (facultatif)</label>'
+    + '<input id="w-class" type="text" maxlength="30" autocomplete="off" placeholder="ex. BTS MCO 1A">'
+    + '<div class="werr" id="w-err"></div>'
+    + '<button class="btn primary" id="w-go">C\'est parti&#8239;!</button>'
+    + '</div>'
+    + '</section>';
+  const name = main.querySelector("#w-name");
+  const classe = main.querySelector("#w-class");
+  if(student && student.name) name.value = student.name;
+  if(student && student.classe) classe.value = student.classe;
+  function go(){
+    const n = name.value.trim();
+    if(n === ""){
+      main.querySelector("#w-err").textContent = "Merci d\'indiquer ton prénom pour continuer.";
+      name.focus();
+      return;
+    }
+    student = { name: n, classe: classe.value.trim() };
+    saveJSON("presentMachineStudent", student);
+    sessionResults = {};
+    renderMenu();
+  }
+  main.querySelector("#w-go").addEventListener("click", go);
+  name.addEventListener("keydown", function(e){ if(e.key === "Enter") go(); });
+  classe.addEventListener("keydown", function(e){ if(e.key === "Enter") go(); });
+}
+
+/* ---------- Rapport et envoi par e-mail (FormSubmit) ---------- */
+function buildReport(){
+  const d = new Date();
+  const dateStr = d.toLocaleDateString("fr-FR") + " à " + d.toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" });
+  const lines = [];
+  let total = 0;
+  GAMES.forEach(function(g){
+    const r = sessionResults[g.id];
+    if(r){
+      lines.push(g.title + " : " + r.big + " · " + starsHTML(r.stars));
+      total += r.stars;
+    }else{
+      lines.push(g.title + " : non joué");
+    }
+  });
+  lines.push("Total : " + total + " / " + (GAMES.length * 3) + " étoiles");
+  const head = "Rapport The Present Machine (les présents en anglais)"
+    + "\nÉtudiant : " + student.name + (student.classe ? " · Classe : " + student.classe : "")
+    + "\nDate : " + dateStr
+    + (REPORT_CONFIG.teacherEmail ? "\nDestinataire : " + REPORT_CONFIG.teacherEmail : "");
+  return { dateStr: dateStr, total: total, text: head + "\n\n" + lines.join("\n") + "\n" };
+}
+
+function sendReport(){
+  const report = buildReport();
+  if(!REPORT_CONFIG.teacherEmail){
+    showReportDialog("⚠️", "Envoi non configuré",
+      "L\'adresse e-mail du professeur n\'est pas encore renseignée dans le fichier. Tu peux copier le rapport ci-dessous et le transmettre manuellement.",
+      report.text);
+    return;
+  }
+  if(typeof location !== "undefined" && String(location.protocol) === "file:"){
+    showReportDialog("📋", "Envoi impossible depuis un fichier local",
+      "Le service d\'envoi refuse les pages ouvertes comme fichiers. Pour envoyer ton rapport, ouvre l\'application depuis l\'adresse en ligne donnée par ton professeur. En attendant, tu peux copier ton rapport ci-dessous.",
+      report.text);
+    return;
+  }
+  fetch("https://formsubmit.co/ajax/" + REPORT_CONFIG.teacherEmail, {
+    method: "POST",
+    headers: { "Accept": "application/json", "Content-Type": "application/json" },
+    body: JSON.stringify({
+      _subject: "The Present Machine : rapport de " + student.name,
+      etudiant: student.name,
+      classe: student.classe || "",
+      date: report.dateStr,
+      total: report.total,
+      rapport: report.text
+    })
+  }).then(function(res){
+    return res.text().then(function(text){
+      let json = null;
+      try{ json = JSON.parse(text); }catch(e){}
+      const ok = res.ok && json && (json.success === true || json.success === "true");
+      if(ok){
+        showReportDialog("✅", "Rapport envoyé !",
+          "Bravo " + student.name + " ! Tes résultats ont bien été envoyés à ton professeur.",
+          report.text);
+        sfxWin();
+      }else{
+        showReportDialog("❌", "Envoi refusé",
+          "Le service d\'envoi a refusé le rapport : " + (json && json.message ? json.message : "erreur " + res.status)
+          + ". Copie le rapport ci-dessous et transmets-le à ton professeur.",
+          report.text);
+      }
+    });
+  }).catch(function(){
+    showReportDialog("❌", "Envoi impossible",
+      "La connexion a échoué (pas d\'accès à Internet ?). Copie le rapport ci-dessous pour ne rien perdre, et transmet-le à ton professeur.",
+      report.text);
+  });
+}
+
+function showReportDialog(ico, title, msg, reportText){
+  const ov = document.createElement("div");
+  ov.className = "overlay";
+  ov.innerHTML = '<div class="result">'
+    + '<div class="rico">' + ico + '</div>'
+    + '<h2>' + title + '</h2>'
+    + '<div class="msg">' + msg + '</div>'
+    + '<textarea class="report-area" rows="8" readonly></textarea>'
+    + '<button class="btn primary" id="ov-copy">Copier le rapport</button>'
+    + '<button class="btn ghost" id="ov-close">Fermer</button>'
+    + '</div>';
+  document.body.appendChild(ov);
+  const ta = ov.querySelector("textarea");
+  ta.value = reportText;
+  ov.querySelector("#ov-copy").addEventListener("click", function(){
+    copyText(ta.value);
+    const b = ov.querySelector("#ov-copy");
+    b.textContent = "Copié !";
+    setTimeout(function(){ if(b) b.textContent = "Copier le rapport"; }, 1500);
+  });
+  ov.querySelector("#ov-close").addEventListener("click", function(){ ov.remove(); });
+}
+
+function copyText(t){
+  try{
+    if(navigator && navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(t);
+      return;
+    }
+  }catch(e){}
+  try{
+    const ta = document.createElement("textarea");
+    ta.value = t;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    ta.remove();
+  }catch(e){}
+}
+
+/* ---------- Démarrage ---------- */
+if(student && student.name){ renderMenu(); } else { renderWelcome(); }
+</script>
+</body>
+</html>
