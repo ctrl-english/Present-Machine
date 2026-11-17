@@ -1,6 +1,6 @@
 # 🎁 The Present Machine
 
-Jeu pédagogique en ligne pour travailler la différence entre **present simple** et **present continuous** (les présents en anglais, niveau B1-B2). L'application se limite volontairement à ce contraste : pas de present perfect. En un seul fichier, sans installation ni dépendance : elle fonctionne entièrement dans le navigateur de l'élève.
+Jeu pédagogique en ligne pour travailler la différence entre **present simple** et **present continuous** (les présents en anglais). L'application se limite volontairement à ce contraste : pas de present perfect. En un seul fichier, sans installation ni dépendance : elle fonctionne entièrement dans le navigateur de l'élève.
 
 ## 🎮 Les 5 mini-jeux
 
