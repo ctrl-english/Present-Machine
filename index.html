@@ -802,7 +802,7 @@ function renderScramble(){
   });
   function finish(){
     const stars = totalMistakes <= 1 ? 3 : totalMistakes <= 4 ? 2 : 1;
-    const msg = totalMistakes <= 1 ? "Quasi parfait ! Les phrases du futur n'ont plus de secret pour toi."
+    const msg = totalMistakes <= 1 ? "Quasi parfait ! Les phrases du présent n'ont plus de secret pour toi."
       : totalMistakes <= 4 ? "Bien joué ! Encore un peu d'entraînement pour le sans-faute."
       : "Terminé ! Rejoue pour améliorer ton score.";
     showResult({ id:"scramble", ico:"🔀", title:"Mélange des mots",
