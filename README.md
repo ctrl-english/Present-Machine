@@ -12,7 +12,7 @@ Jeu pédagogique en ligne pour travailler la différence entre **present simple*
 | ⚡ Quiz éclair | 10 questions en 20 secondes chacune |
 | 🧠 Mémo du présent | Retrouver les 8 paires de phrases le plus vite possible |
 
-Le tout est complété par un **Mémo des règles** (present simple vs present continuous, avec le tableau des marqueurs) consultable avant de jouer, un système d'étoiles (jusqu'à 15 ★) et un rapport de résultats envoyé au professeur. Les phrases s'appuient sur des situations de commerce et de marketing, adaptées aux BTS MCO.
+Le tout est complété par un **Mémo des règles** (present simple vs present continuous, avec le tableau des marqueurs) consultable avant de jouer, un système d'étoiles (jusqu'à 15 ★) et un rapport de résultats envoyé au professeur. Les phrases s'appuient sur des situations de commerce et de marketing, adaptées aux BTS tertiaires.
 
 ## 📤 Rapport des résultats
 
